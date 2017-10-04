@@ -9,55 +9,53 @@ import android.os.Parcelable;
 
 public class SearchRequestModel implements Parcelable {
 
-    private String depare;
-    private String oùilva;
-    private String quan;
+    // Attributs
+    private String departure;
+    private String destination;
+    private String date;
 
-    public String getDepare() {
-        return depare;
+    // Constructor
+    public SearchRequestModel(String departure, String destination, String date) {
+        this.departure = departure;
+        this.destination = destination;
+        this.date = date;
     }
 
-    public String getOùilva() {
-        return oùilva;
+    // Getters
+    public String getDeparture() {
+        return departure;
+    }
+    public String getDestination() {
+        return destination;
+    }
+    public String getDate() {
+        return date;
     }
 
-    public SearchRequestModel(String depare, String oùilva, String quan) {
-        this.depare = depare;
-        this.oùilva = oùilva;
-        this.quan = quan;
+    // Parcelable
+    protected SearchRequestModel(Parcel in) {
+        departure = in.readString();
+        destination = in.readString();
+        date = in.readString();
     }
-
-        protected SearchRequestModel(Parcel in) {
-            depare = in.readString();
-            oùilva = in.readString();
-            quan = in.readString();
-        }
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(depare);
-        dest.writeString(oùilva);
-        dest.writeString(quan);
+        dest.writeString(departure);
+        dest.writeString(destination);
+        dest.writeString(date);
     }
-
     @Override
     public int describeContents() {
         return 0;
     }
-
     public static final Creator<SearchRequestModel> CREATOR = new Creator<SearchRequestModel>() {
-                @Override
-                public SearchRequestModel createFromParcel(Parcel in) {
+        @Override
+        public SearchRequestModel createFromParcel(Parcel in) {
             return new SearchRequestModel(in);
         }
-
         @Override
         public SearchRequestModel[] newArray(int size) {
             return new SearchRequestModel[size];
         }
     };
-
-    public String getQuan() {
-        return quan;
-    }
 }

@@ -16,25 +16,25 @@ public class ViewSearchItineraryResultsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_search_itinerary_results_list);
 
-        SearchRequestModel truc = getIntent().getParcelableExtra("searchRequest");
-        String text1 = truc.getDepare();
-            String TEXTEDEUX = truc.getOùilva();
-        String texte3 = truc.getQuan();
+        SearchRequestModel searchRequestModel = getIntent().getParcelableExtra("searchRequest");
 
-        Toast.makeText(this, texte3, Toast.LENGTH_LONG).show();
+        String departure = searchRequestModel.getDeparture();
+        String destination = searchRequestModel.getDestination();
+        String date = searchRequestModel.getDate();
 
-        setTitle(text1 + " >> " + TEXTEDEUX);
+        Toast.makeText(this, date, Toast.LENGTH_LONG).show();
 
-        // TODO : add résult to tableau
-            ListView résultat = (ListView) findViewById(R.id.listViewSearchResults);
-            ArrayList<TripResultModel> tableau = new ArrayList<>();SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy-hh:mm");
-            try {
-                        tableau.add(new TripResultModel("Bernard", sdf.parse("21/02/2017-15:30"), 15));
-                        tableau.add(new TripResultModel("Jean-Jacques", sdf.parse("21/02/2017-16:00"), 20));
-                        tableau.add(new TripResultModel("Bertrand", sdf.parse("21/02/2017-16:30"), 16));
-                         tableau.add(new TripResultModel("Gertrude", sdf.parse("21/02/2017-17:00"), 40));
-            } catch (ParseException e) {
-            }
-        TripResultAdapter adapteur = new TripResultAdapter(this, tableau);résultat.setAdapter(adapteur);
+        setTitle(departure + " >> " + destination);
+
+        ListView result = (ListView) findViewById(R.id.listViewSearchResults);
+        ArrayList<TripResultModel> tableau = new ArrayList<>();SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy-hh:mm");
+        try {
+            tableau.add(new TripResultModel("Bernard", sdf.parse("21/02/2017-15:30"), 15));
+            tableau.add(new TripResultModel("Jean-Jacques", sdf.parse("21/02/2017-16:00"), 20));
+            tableau.add(new TripResultModel("Bertrand", sdf.parse("21/02/2017-16:30"), 16));
+            tableau.add(new TripResultModel("Gertrude", sdf.parse("21/02/2017-17:00"), 40));
+        } catch (ParseException e) {
+        }
+        TripResultAdapter adapter = new TripResultAdapter(this, tableau);result.setAdapter(adapter);
     }
 }

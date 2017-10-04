@@ -13,15 +13,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //bouton cherché
-        Button Search = (Button) findViewById(R.id.gogogo);
+        // Search Button
+        Button Search = (Button) findViewById(R.id.buttonSearch);
         Search.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                Intent intent=new Intent(MainActivity.this, SearchItineraryActivity.class);startActivity(intent);
-            }});
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SearchItineraryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

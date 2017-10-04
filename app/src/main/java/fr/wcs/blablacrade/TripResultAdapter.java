@@ -13,57 +13,47 @@ import java.util.ArrayList;
  * Created by wilder on 13/09/17.
  */
 
-// This is the adapter lol
 public class TripResultAdapter extends BaseAdapter {
-    private Context context; //context
-    private ArrayList<TripResultModel> items; //data source of the list adapter
 
-    //public constructor 
+    // Attributs
+    private Context context;
+    private ArrayList<TripResultModel> items;
+
+    // Constructor
     public TripResultAdapter(Context context, ArrayList<TripResultModel> items) {
         this.context = context;
         this.items = items;
     }
 
+    // Getters
     @Override
     public int getCount() {
-        return items.size(); //returns total of items in the list
+        return items.size();
     }
-
     @Override
     public Object getItem(int position) {
-        return items.get(position); //returns list item at the specified position
+        return items.get(position);
     }
-
     @Override
     public long getItemId(int position) {
         return position;
     }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // inflate the layout for each list row
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).
-                    inflate(R.layout.trip_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.trip_item, parent, false);
         }
 
-        // get current item to be displayed
         TripResultModel currentItem = (TripResultModel) getItem(position);
 
-        // get the TextView for item name and item description
-        TextView departure = (TextView)
-                convertView.findViewById(R.id.texteresu1);
-        TextView firstname = (TextView)
-                convertView.findViewById(R.id.textres2);
-        TextView price = (TextView)
-                convertView.findViewById(R.id.txt);
+        TextView departureResult = (TextView) convertView.findViewById(R.id.departureResult);
+        TextView firstNameResult = (TextView) convertView.findViewById(R.id.firstNameResult);
+        TextView priceResult = (TextView) convertView.findViewById(R.id.priceResult);
 
-        //sets the text for item name and item description from the current item object
-        departure.setText(currentItem.getDepare().toString());
-        firstname.setText(currentItem.getPrénom());
-        price.setText(String.valueOf(currentItem.getPri()));
+        departureResult.setText(currentItem.getDeparture().toString());
+        firstNameResult.setText(currentItem.getPrenom());
+        priceResult.setText(String.valueOf(currentItem.getPrice()));
 
-        // returns the view for the current row
         return convertView;
     }
 }
